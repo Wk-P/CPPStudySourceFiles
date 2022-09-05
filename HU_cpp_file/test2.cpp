@@ -25,10 +25,10 @@ int main() {
 	for (int i = 1; i < len_size; i += 2) {
 		height += len[i];
 	}
-	int k = 0;
-	while (k < 15) {
-		int x, y, result = 0;
-		cin >> x >> y;
+	int k = 0, x = 0, y = 0;
+	int *results = new int[15];
+	while (cin >> x >> y) {
+		int result = 0;
 		int xptr = 0, yptr = 1, h = height, x_left = 0, x_right = len[xptr] + x_left;
 		for (int i = 0; i < len_size; i += 2) {
 			if (x_left < x && x < x_right) {
@@ -54,18 +54,21 @@ int main() {
 				yptr += 2;
 			}
 		}
+		results[k++] = result;
+		
+	}
 
-		if (result == 0) {
+	for (int i = 0;i < k;i++) {
+		if (results[i] == 0) {
 			cout << "on" << endl;
 		}
-		else if (result == -1) {
+		else if (results[i] == -1) {
 			cout << "out" << endl;
 		}
 		else {
 			cout << "in" << endl;
 		}
-		k++;
 	}
-
+	
 	return 0;
 }
